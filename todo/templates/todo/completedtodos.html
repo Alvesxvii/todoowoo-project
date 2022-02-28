@@ -1,0 +1,34 @@
+
+
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+ <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <h2>Completed Todos - This is what you've done so far!</h2>
+        </div>
+ </div>
+
+
+<div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <div class="list-group">
+                {% for todo in todos %}
+                    <a href="{% url 'viewtodo' todo.id %}">
+
+                        {% if todo.important %}<b>{% endif %}{{ todo.title }}{% if todo.important %}</b>{% endif %}
+                        {% if todo.memo %} - {{ todo.memo }}{% endif %}
+
+
+                    </a>{{ todo.datecompleted|date:'d M Y' }} às {{ todo.datecompleted|date:'H:i:s' }}h - {{ todo.datecompleted|date:'T' }}
+
+                <br><br>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
